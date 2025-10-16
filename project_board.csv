@@ -1,0 +1,24 @@
+Title,Description,Label,Due Date,List
+Init Flutter project,Init + theming + navigation + folders lib/app core data features,Setup,,S1 — Base projet
+Configure Firebase,Add Firebase (Android/iOS/Web) + firebase_core,Setup,,S1 — Base projet
+Auth models & schema,Define User model and Firestore structure,Auth,,S1 — Base projet
+Auth screens (signup/login),Minimal UI + validation + role selection,Auth,,S1 — Base projet
+Role-based redirection,Redirect by role (teacher/student) after login,Auth,,S1 — Base projet
+CRUD Classes,Create/Edit/Delete classes for teacher,Classes,,S2 — Classes & séances
+Assign students to class,Add by email/uid + list enrolled,Classes,,S2 — Classes & séances
+Plan sessions,Create sessions with date/time/duration,Sessions,,S2 — Classes & séances
+Generate QR per session,Display big QR with sessionId|code,Sessions, ,S3 — Présence (QR/code)
+Scan QR / code fallback,Student scans QR or enters code,Attendance,,S3 — Présence (QR/code)
+Write presence to Firestore,Mark attendance in realtime with timestamp,Attendance,,S3 — Présence (QR/code)
+Student history,View personal attendance per class,Attendance,,S4 — Consultation & stats
+Teacher history,View class attendance per session,Attendance,,S4 — Consultation & stats
+Stats cards,Presence/absence rate + charts (pie/bar),Stats,,S4 — Consultation & stats
+FCM notifications,Configure tokens + permissions + topics,Notifications,,S5 — Notifications & règles
+Alert student if absent,Send notification when marked absent,Notifications,,S5 — Notifications & règles
+Alert teacher repeated absences,Notify when thresholds exceeded,Notifications,,S5 — Notifications & règles
+Firestore rules,Role-based read/write + field checks,Security,,S5 — Notifications & règles
+Storage rules,Restrict write paths/roles,Security,,S5 — Notifications & règles
+Unit tests (models/services),Add small test battery for core pieces,Quality,,S6 — Qualité & livrables
+Polish UI/UX,Empty states, errors, loaders,Quality,,S6 — Qualité & livrables
+README + PPT,Docs with screenshots, architecture, tech choices,Docs,,S6 — Qualité & livrables
+GitHub hygiene,Branches/tags/PRs even solo,Docs,,S6 — Qualité & livrables
