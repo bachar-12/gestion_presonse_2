@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../app/router.dart';
 import '../../../core/constants/roles.dart';
 import '../../../core/widgets/role_badge.dart';
-import '../../../core/widgets/users_counters.dart';
+import '../../../core/widgets/admin_drawer.dart';
 import '../../../data/models/app_user.dart';
 import '../../../data/models/class_model.dart';
 import '../../../data/providers.dart';
@@ -31,31 +31,11 @@ class ClassesScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Classes'),
-        actions: [
-          if (isAdmin) const UsersCounters(),
-          const RoleBadge(),
-          if (isAdmin)
-            IconButton(
-              tooltip: 'Statistiques',
-              icon: const Icon(Icons.bar_chart_rounded),
-              onPressed: () => context.push(AppRoutes.stats),
-            ),
-          if (isAdmin)
-            IconButton(
-              tooltip: 'Utilisateurs',
-              icon: const Icon(Icons.people_alt_outlined),
-              onPressed: () => context.push(AppRoutes.users),
-            ),
-          IconButton(
-            tooltip: 'Déconnexion',
-            icon: const Icon(Icons.logout),
-            onPressed: () async {
-              await ref.read(authControllerProvider).signOut();
-              if (context.mounted) context.go(AppRoutes.login);
-            },
-          ),
-        ],
+        // All admin-only actions moved to Drawer to avoid overflow on small screens.
+        actions: const [RoleBadge()],
       ),
+      // Show drawer for admins only. This groups counters, navigation and logout.
+      drawer: isAdmin ? const AdminDrawer() : null,
       body: StreamBuilder<List<ClassModel>>(
         stream: stream,
         builder: (context, snapshot) {

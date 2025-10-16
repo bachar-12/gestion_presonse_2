@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../app/router.dart';
 import '../../../core/constants/roles.dart';
 import '../../../core/widgets/role_badge.dart';
+import '../../../core/widgets/admin_drawer.dart';
 import '../../../mvc/providers.dart';
 import '../../../data/models/app_user.dart';
 import '../../../data/models/attendance_model.dart';
@@ -50,16 +51,18 @@ class _AttendanceScreenState extends ConsumerState<AttendanceScreen> {
             title: const Text('Présence'),
             actions: [
               const RoleBadge(),
-              IconButton(
-                tooltip: 'Déconnexion',
-                icon: const Icon(Icons.logout),
-                onPressed: () async {
-                  await ref.read(authControllerProvider).signOut();
-                  if (context.mounted) context.go(AppRoutes.login);
-                },
-              ),
+              if (!isAdmin)
+                IconButton(
+                  tooltip: 'Déconnexion',
+                  icon: const Icon(Icons.logout),
+                  onPressed: () async {
+                    await ref.read(authControllerProvider).signOut();
+                    if (context.mounted) context.go(AppRoutes.login);
+                  },
+                ),
             ],
           ),
+          drawer: isAdmin ? const AdminDrawer() : null,
           body: classesSnap.connectionState == ConnectionState.waiting
               ? const Center(child: CircularProgressIndicator())
               : classes.isEmpty
